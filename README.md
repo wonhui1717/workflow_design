@@ -375,10 +375,23 @@ Google Sheets 기록과 Gmail 자동 발송까지 정상적으로 수행되는 �
 - 각 Path에 필요한 Action을 별도로 구성해야 한다.
 
 ---
+# 11. 도구별 적합한 사용 상황
 
-# 11. 구현 과정에서 발생한 문제와 해결
+## Make가 적합한 상황
 
-## 11.1 Make Gmail 수신자 Mapping 오류
+Make는 여러 조건과 서비스가 연결되고 데이터의 흐름을 시각적으로 확인해야 하는 복잡한 자동화에 적합하다. Router와 Filter를 이용하여 여러 실행 경로를 한 화면에서 구성할 수 있기 때문에 조건 분기가 많거나 여러 단계의 데이터 처리가 필요한 업무에 활용하기 좋다.
+
+예를 들어 여러 조건에 따른 데이터 분류, 여러 서비스 간 데이터 전달, 복수의 분기를 포함하는 업무 자동화 등에 활용할 수 있다.
+
+## Zapier가 적합한 상황
+
+Zapier는 Trigger 이후 여러 Action을 순차적으로 실행하는 비교적 명확한 업무 자동화에 적합하다. 각 Step을 순서대로 설정하고 개별적으로 테스트할 수 있기 때문에 처음 자동화를 구성하거나 실행 단계를 하나씩 확인해야 하는 업무에 활용하기 편리하다.
+
+예를 들어 새로운 데이터 입력에 따른 알림, 이메일 자동 발송, 데이터 기록 및 전달과 같이 실행 순서가 명확한 업무에 활용할 수 있다.
+
+# 12. 구현 과정에서 발생한 문제와 해결
+
+## 12.1 Make Gmail 수신자 Mapping 오류
 
 Gmail Action 실행 과정에서 다음 오류가 발생하였다.
 
@@ -390,7 +403,7 @@ Gmail의 `To` 항목에 이메일 데이터가 올바르게 Mapping되지 않아
 
 Google Sheets Trigger의 `이메일` 필드를 Gmail의 `To` 항목에 직접 Mapping하여 해결하였다.
 
-## 11.2 Make Gmail 인증 오류
+## 12.2 Make Gmail 인증 오류
 
 Gmail Action 실행 과정에서 다음과 같은 인증 오류가 발생하였다.
 
@@ -400,14 +413,14 @@ Gmail Action 실행 과정에서 다음과 같은 인증 오류가 발생하였�
 
 새로운 Gmail Connection을 생성하고 Google 계정의 OAuth 인증을 다시 진행하여 해결하였다.
 
-## 11.3 Zapier Trigger 선택 오류
+## 12.3 Zapier Trigger 선택 오류
 
 초기 설정 과정에서 `New Spreadsheet` Trigger를 선택하여
 새로운 행 데이터가 아닌 Spreadsheet 자체의 정보가 출력되는 문제가 발생하였다.
 
 Trigger를 `New Spreadsheet Row`로 변경하고 `입력데이터` Worksheet를 지정하여 해결하였다.
 
-## 11.4 Zapier Sample Data
+## 12.4 Zapier Sample Data
 
 Path A를 설정할 때 Trigger의 Sample Data가 65점이었기 때문에
 80점 이상 Path에서도 설정 화면에는 65점이 표시되었다.
@@ -419,7 +432,7 @@ Zap을 Publish한 후 새로운 85점과 65점 데이터를 각각 입력하여
 
 ---
 
-# 12. 결론
+# 13. 결론
 
 본 프로젝트에서는 동일한 평가 결과 자동 분류 및 이메일 통보 업무를
 **Make와 Zapier에서 각각 구현**하였다.
